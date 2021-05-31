@@ -182,4 +182,3 @@ app.use('/api/images', express.static('images'));
 app.use('/', express.static('dist', {index: 'index.html'}));
 
 app.listen(8081, () => console.log('Server listening on port 8081!'));
-
