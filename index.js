@@ -1,7 +1,11 @@
 const path = require('path')
 const express = require("express");
+const history = require('connect-history-api-fallback');
+// const history = gör så att deep-linking funkar tillsammans med rad 8
 
 const app = express();
+
+app.use(history({index: '/index.html'}));
 
 app.get('/api/parts', (req, res) =>
   res.send({
@@ -174,6 +178,8 @@ app.post('/api/cart', (req, res) =>
 app.post('/api/sign-in', (req, res) => res.status(200).send());
 
 app.use('/api/images', express.static('images'));
+
+app.use('/', express.static('dist', {index: 'index.html'}));
 
 app.listen(8081, () => console.log('Server listening on port 8081!'));
 
